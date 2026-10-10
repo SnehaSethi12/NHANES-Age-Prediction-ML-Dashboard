@@ -32,11 +32,19 @@ page = st.sidebar.radio("Select Page:", [
 # ============================================================================
 # LOAD DATA
 # ============================================================================
+# ============================================================================
+# LOAD DATA
+# ============================================================================
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "NHANES_age_prediction.csv")
+
 try:
-    df = pd.read_csv(r"C:\Users\HP\Downloads\national+health+and+nutrition+health+survey+2013-2014+(nhanes)+age+prediction+subset\NHANES_age_prediction.csv")
+    df = pd.read_csv(DATA_PATH)
     st.sidebar.success("✅ Data loaded successfully")
-except:
-    st.sidebar.error("⚠️ Could not load data file")
+except Exception as e:
+    st.sidebar.error(f"⚠️ Could not load data file: {e}")
     st.stop()
 
 # Create age groups for classification
